@@ -132,6 +132,7 @@ La agrupación por día usa `TO_CHAR("createdAt", 'YYYY-MM-DD')` con `Prisma.sql
 ### Soft delete
 `User` y `Prescription` tienen `deletedAt DateTime?`. Todas las queries filtran `deletedAt: null` para excluir registros borrados lógicamente, sin eliminar datos de la BD.
 
-## Despliegue en producción
+## URLs de producción
 
-> TODO: Documentar URLs de producción y pasos de deploy (Railway / Render / VPS).
+- **API**: `https://nutrabioticsback-production.up.railway.app/api`
+- **Swagger**: `https://nutrabioticsback-production.up.railway.app/docs`
