@@ -9,10 +9,8 @@ RUN npm ci --include=dev
 
 COPY . .
 
-RUN npm run build
-
-RUN npm prune --omit=dev
+RUN npx prisma generate && npx nest build
 
 EXPOSE 3001
 
-CMD ["npm", "run", "start:prod"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main"]
