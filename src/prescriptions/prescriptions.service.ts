@@ -177,12 +177,12 @@ export class PrescriptionsService {
         }),
         this.prisma.$queryRaw<{ date: string; count: bigint }[]>(
           Prisma.sql`
-            SELECT DATE_FORMAT(createdAt, '%Y-%m-%d') as date, COUNT(*) as count
-            FROM Prescription
-            WHERE deletedAt IS NULL
-              ${from ? Prisma.sql`AND createdAt >= ${new Date(from)}` : Prisma.empty}
-              ${to ? Prisma.sql`AND createdAt <= ${new Date(to)}` : Prisma.empty}
-            GROUP BY DATE_FORMAT(createdAt, '%Y-%m-%d')
+            SELECT TO_CHAR("createdAt", 'YYYY-MM-DD') as date, COUNT(*) as count
+            FROM "Prescription"
+            WHERE "deletedAt" IS NULL
+              ${from ? Prisma.sql`AND "createdAt" >= ${new Date(from)}` : Prisma.empty}
+              ${to ? Prisma.sql`AND "createdAt" <= ${new Date(to)}` : Prisma.empty}
+            GROUP BY TO_CHAR("createdAt", 'YYYY-MM-DD')
             ORDER BY date DESC
             LIMIT 30
           `,

@@ -149,12 +149,12 @@ let PrescriptionsService = class PrescriptionsService {
                 where: { deletedAt: null, ...dateFilter },
             }),
             this.prisma.$queryRaw(client_1.Prisma.sql `
-            SELECT DATE_FORMAT(createdAt, '%Y-%m-%d') as date, COUNT(*) as count
-            FROM Prescription
-            WHERE deletedAt IS NULL
-              ${from ? client_1.Prisma.sql `AND createdAt >= ${new Date(from)}` : client_1.Prisma.empty}
-              ${to ? client_1.Prisma.sql `AND createdAt <= ${new Date(to)}` : client_1.Prisma.empty}
-            GROUP BY DATE_FORMAT(createdAt, '%Y-%m-%d')
+            SELECT TO_CHAR("createdAt", 'YYYY-MM-DD') as date, COUNT(*) as count
+            FROM "Prescription"
+            WHERE "deletedAt" IS NULL
+              ${from ? client_1.Prisma.sql `AND "createdAt" >= ${new Date(from)}` : client_1.Prisma.empty}
+              ${to ? client_1.Prisma.sql `AND "createdAt" <= ${new Date(to)}` : client_1.Prisma.empty}
+            GROUP BY TO_CHAR("createdAt", 'YYYY-MM-DD')
             ORDER BY date DESC
             LIMIT 30
           `),
