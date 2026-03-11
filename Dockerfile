@@ -9,7 +9,7 @@ RUN npm ci --include=dev
 
 COPY . .
 
-RUN npx prisma generate && npx nest build
+RUN npx prisma generate && npx nest build && echo "=== BUILD OK ===" && ls -la dist/ && ls dist/main.js
 
 EXPOSE 3001
 
