@@ -1,4 +1,5 @@
-FROM node:22-alpine
+FROM node:22-bookworm-slim
+RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 
 COPY package*.json ./
