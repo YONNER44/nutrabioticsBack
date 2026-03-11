@@ -104,7 +104,7 @@ export class AuthService {
       { ...payload },
       {
         secret: this.config.get<string>('JWT_ACCESS_SECRET'),
-        expiresIn: (this.config.get<string>('JWT_ACCESS_TTL') ?? '900s') as any,
+        expiresIn: (this.config.get<string>('JWT_ACCESS_TTL') ?? '15m') as any,
       },
     );
 
