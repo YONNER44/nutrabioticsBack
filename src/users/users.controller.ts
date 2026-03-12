@@ -10,10 +10,10 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { FilterUserDto } from './dto/filter-user.dto';
 import { Roles } from '../common/decorators/roles.decorator';
 import { RolesGuard } from '../common/guards/roles.guard';
 import { Role } from '@prisma/client';
-import { PaginationDto } from '../common/dto/pagination.dto';
 
 @UseGuards(AuthGuard('jwt'), RolesGuard)
 @Controller('users')
@@ -28,16 +28,12 @@ export class UsersController {
 
   @Get()
   @Roles(Role.admin)
-  findAll(
-    @Query('role') role?: Role,
-    @Query('query') query?: string,
-    @Query() pagination?: PaginationDto,
-  ) {
+  findAll(@Query() filters: FilterUserDto) {
     return this.usersService.findAll(
-      role,
-      query,
-      pagination?.page,
-      pagination?.limit,
+      filters.role,
+      filters.query,
+      filters.page,
+      filters.limit,
     );
   }
 
