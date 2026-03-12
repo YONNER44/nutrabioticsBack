@@ -108,14 +108,16 @@ export class AuthService {
       this.config.get<string>('JWT_REFRESH_SECRET') ||
       process.env.JWT_REFRESH_SECRET ||
       'fallback_refresh_secret';
-    const accessTtl =
-      (this.config.get<string>('JWT_ACCESS_TTL') ||
-        process.env.JWT_ACCESS_TTL ||
-        '15m').trim();
-    const refreshTtl =
-      (this.config.get<string>('JWT_REFRESH_TTL') ||
-        process.env.JWT_REFRESH_TTL ||
-        '7d').trim();
+    const accessTtl = (
+      this.config.get<string>('JWT_ACCESS_TTL') ||
+      process.env.JWT_ACCESS_TTL ||
+      '15m'
+    ).trim();
+    const refreshTtl = (
+      this.config.get<string>('JWT_REFRESH_TTL') ||
+      process.env.JWT_REFRESH_TTL ||
+      '7d'
+    ).trim();
 
     const accessToken = this.jwtService.sign(
       { ...payload },
