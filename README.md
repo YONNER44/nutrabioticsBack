@@ -68,7 +68,7 @@ El servidor escucha en **http://localhost:3001**.
 | Método | Ruta                           | Descripción              |
 |--------|--------------------------------|--------------------------|
 | GET    | /api/me/prescriptions          | Mis prescripciones       |
-| GET    | /api/me/prescriptions/:id      | Detalle                  |
+| GET    | /api/prescriptions/:id         | Detalle de prescripción  |
 | PUT    | /api/prescriptions/:id/consume | Marcar como consumida    |
 | GET    | /api/prescriptions/:id/pdf     | Descargar PDF            |
 
@@ -77,8 +77,15 @@ El servidor escucha en **http://localhost:3001**.
 |--------|----------------------------|------------------------------------|
 | GET    | /api/admin/prescriptions   | Todas las prescripciones (filtros) |
 | GET    | /api/admin/metrics         | Métricas para el dashboard         |
-| GET    | /api/users                 | Listar usuarios                    |
+| GET    | /api/users                 | Listar usuarios (con filtros)      |
 | POST   | /api/users                 | Crear usuario                      |
+| GET    | /api/users/:id             | Detalle de un usuario              |
+
+### Compartidos (Admin, Médico, Paciente)
+| Método | Ruta                       | Acceso                    | Descripción                   |
+|--------|----------------------------|---------------------------|-------------------------------|
+| GET    | /api/doctors               | admin, médico, paciente   | Listar médicos (paginado)     |
+| GET    | /api/patients              | admin, médico             | Listar pacientes (paginado)   |
 
 ## Scripts de npm
 
