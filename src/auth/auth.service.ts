@@ -104,11 +104,11 @@ export class AuthService {
       { ...payload },
       {
         secret: this.config.get<string>('JWT_ACCESS_SECRET'),
-        expiresIn: (this.config.get<string>('JWT_ACCESS_TTL') ?? '15m') as any,
+        expiresIn: (this.config.get<string>('JWT_ACCESS_TTL') || '15m') as any,
       },
     );
 
-    const refreshTtl = (this.config.get<string>('JWT_REFRESH_TTL') ??
+    const refreshTtl = (this.config.get<string>('JWT_REFRESH_TTL') ||
       '7d') as any;
 
     const refreshToken = this.jwtService.sign(

@@ -122,9 +122,9 @@ let AuthService = class AuthService {
         };
         const accessToken = this.jwtService.sign({ ...payload }, {
             secret: this.config.get('JWT_ACCESS_SECRET'),
-            expiresIn: (this.config.get('JWT_ACCESS_TTL') ?? '900s'),
+            expiresIn: (this.config.get('JWT_ACCESS_TTL') || '15m'),
         });
-        const refreshTtl = (this.config.get('JWT_REFRESH_TTL') ??
+        const refreshTtl = (this.config.get('JWT_REFRESH_TTL') ||
             '7d');
         const refreshToken = this.jwtService.sign({ ...payload }, {
             secret: this.config.get('JWT_REFRESH_SECRET'),
